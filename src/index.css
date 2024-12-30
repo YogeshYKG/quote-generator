@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Utilities */
+.material-symbols-rounded {
+    @apply w-[1em] h-[1em] overflow-hidden;
+    font-variation-settings: "FILL", 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+
+.typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap; /* Prevent line breaks during typing */
+    border-right: 0.15em solid;
+    animation: typing 5s steps(40) 1s forwards, blink 0.75s step-end infinite;
+}
+.QuoteText {
+    white-space: normal; /* Allow text wrapping after the typewriter animation */
+    word-wrap: break-word;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+  
+
