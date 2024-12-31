@@ -16,7 +16,7 @@ const QuoteCard = ({
         
         const timeout = setTimeout(() => {
             setAnimate(true);
-        }, quoteText.length * 31 + quoteText.length * 51);
+        }, quoteText.length * 80*2);
         return () => clearTimeout(timeout);
 
         
@@ -24,7 +24,7 @@ const QuoteCard = ({
 
   return (
     <div className="QuoteCard ">
-        <div className="relative flex flex-col justify-center items-center ring-4 ring-indigo-500 mx-auto bg-indigo-700 rounded-lg p-8 max-w-2xl shadow-lg">
+        <div className="relative flex flex-col justify-center items-center ring-4 ring-indigo-500 mx-auto bg-indigo-700 rounded-lg p-8 w-[90%] min-w-[80%] sm:w-[40rem] sm:min-w-[30rem] transition-all shadow-lg">
             <div className="Heading text-2xl font-bold text-white mb-4 ">
                 <h1>Quote Of The Day</h1>
             </div>
@@ -40,9 +40,8 @@ const QuoteCard = ({
                         typewriter
                             .typeString(quoteText)
                             .callFunction(() => {
-                            console.log("Quote typed out!");
+                                console.log("Typing completed!");
                             })
-                            .pauseFor(1)
                             .start();
                         }}
                     />
@@ -57,7 +56,6 @@ const QuoteCard = ({
                             onInit={(typewriter) => {
                             typewriter
                                 .typeString(quoteText)
-                                .pauseFor(1)
                                 .deleteAll()
                                 .callFunction(() => console.log("Quote deleted!"))
                                 .start();
@@ -74,31 +72,30 @@ const QuoteCard = ({
                     {'- ' + author}
                 </div>
 
-                <div className="flex justify-between items-center w-1/6">
+                <div className="flex flex-row justify-evenly items-center w-1/6">
                     <button 
                         onClick={Refresh} 
-                        className="flex items-center justify-center text-2xl text-white material-symbols-rounded"
+                        className="items-center justify-center text-2xl text-white material-symbols-rounded"
                     >
                         Cached
                     </button>
-                
-                    {/* <a
-                        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                            `"${quoteText}" - ${author}`
-                        )}`}
+                    <a 
+                        href="https://github.com/YogeshYKG/quote-generator"
                         target="_blank"
-                        rel="noopener noreferrer"
-                        className=""
+                        className="items-center justify-center text-2xl text-white material-symbols-rounded"
                     >
-                        Tweet
-                    </a> */}
+                        dataset_linked
+                    </a>
 
-                    {/* <div 
-                        href="/"
-                        className=""
+                    <a 
+                        href="https://portfolio-six-beige-67.vercel.app/"
+                        target="_blank"
+                        className="items-center justify-center text-2xl text-white material-symbols-rounded"
                     >
-
-                    </div> */}
+                        account_circle
+                    </a>
+                    
+                    
                 </div>
                 
 
