@@ -1,4 +1,6 @@
 import React,{ useState, useEffect } from 'react'
+import Typewriter from 'typewriter-effect';
+
 
 
 const QuoteCard = ({ 
@@ -8,11 +10,13 @@ const QuoteCard = ({
 
 }) => {
     const [animate, setAnimate] = useState(false);
+
     useEffect(() => {
         setAnimate(false);
+        
         const timeout = setTimeout(() => {
             setAnimate(true);
-        }, 5);
+        }, quoteText.length * 31 + quoteText.length * 51);
         return () => clearTimeout(timeout);
 
         
@@ -25,8 +29,43 @@ const QuoteCard = ({
                 <h1>Quote Of The Day</h1>
             </div>
             <div className="w-full h-px bg-gray-300"></div>
-            <div className={`QuoteText mt-4 ${animate ? 'typewriter' : ''} text-center text-xl italic text-white mb-4 break-words `}>
-                {quoteText}
+            <div className={`mt-4 text-center text-xl italic text-white font-medium mb-4`}>
+                {animate ? (
+                    <Typewriter
+                        options={{
+                        delay: 50, // Typing speed
+                        deleteSpeed: 30, // Deletion speed
+                        }}
+                        onInit={(typewriter) => {
+                        typewriter
+                            .typeString(quoteText)
+                            .callFunction(() => {
+                            console.log("Quote typed out!");
+                            })
+                            .pauseFor(1)
+                            .start();
+                        }}
+                    />
+                ) : (
+                    <span>{
+                        <Typewriter
+                            options={{
+                            delay: 50,
+                            deleteSpeed: 30,
+                            cursor: "|",
+                            }}
+                            onInit={(typewriter) => {
+                            typewriter
+                                .typeString(quoteText)
+                                .pauseFor(1)
+                                .deleteAll()
+                                .callFunction(() => console.log("Quote deleted!"))
+                                .start();
+                            }}
+                        />    
+                        
+                    }</span>
+                )}
             </div>
             <div className="w-full h-px bg-gray-300 mb-4"></div>
             <div className="flex flex-row justify-between items-center w-full">
